@@ -22,6 +22,7 @@ func main() {
 		log.Fatalf("Failed to start the server %v", err)
 	}
 	grpcServer := grpc.NewServer()
+	pd.RegisterGreetServiceServer(grpcServer, &helloServer{})
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("Failed to start: %v", err)
 	}
